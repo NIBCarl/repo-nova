@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Spin the Wheel - Novaluxia</title>
+  <meta name="description" content="Spin the Wheel to win rewards!">
+  <link rel="icon" href="https://novaluxia.top/static/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/spin.css">
+</head>
+<body>
+  
+  <div style="position: absolute; top: 0; width: 100%;">
+    <div class="login-header" style="padding: 20px;">
+      <div class="logo-container">
+        <img class="logo-icon" src="https://novaluxia.top/static/logo.png" alt="Novaluxia Logo" style="width: 80px;" draggable="false">
+        <div class="logo-text" style="font-size: 20px;">Novaluxia</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spin-container" style="margin-top: 120px;">
+    <h1>Spin the Wheel!</h1>
+    
+    <div class="wheel-wrapper">
+      <div class="pointer"></div>
+      <div class="wheel" id="wheel">
+        <!-- Labels injected via JS -->
+      </div>
+    </div>
+    
+    <button class="spin-btn" id="spinBtn">Spin Now</button>
+  </div>
+
+  <!-- Result Modal -->
+  <div class="modal-overlay" id="resultModal">
+    <div class="modal-content">
+      <div class="modal-title">Your Result:</div>
+      <div class="modal-reward" id="rewardText">Reward goes here</div>
+      <!-- Green button with white text -->
+      <a href="https://novaluxia.top/#/" class="return-btn">Return to Home</a>
+    </div>
+  </div>
+
+  <script src="js/spin.js"></script>
+</body>
+</html>

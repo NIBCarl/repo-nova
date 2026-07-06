@@ -1,0 +1,196 @@
+/* public/css/spin.css */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family, 'Inter', sans-serif);
+  background: var(--bg-light, #f5f7fa);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.spin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 30px 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+  font-size: 28px;
+  margin: 0;
+}
+
+/* The Wheel */
+.wheel-wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    #f44336 0deg 60deg,
+    #9c27b0 60deg 120deg,
+    #3f51b5 120deg 180deg,
+    #009688 180deg 240deg,
+    #ff9800 240deg 300deg,
+    #607d8b 300deg 360deg
+  );
+  border: 4px solid #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99); /* smooth ease-out */
+  position: relative;
+  overflow: hidden;
+}
+
+.wheel::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.wheel-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  margin-top: -10px; /* half of height to center */
+  transform-origin: left center;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  text-align: right; /* push text to the edge */
+  padding-right: 20px;
+}
+
+.pointer {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; 
+  height: 0; 
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 30px solid #333;
+  z-index: 10;
+}
+
+.spin-btn {
+  background: var(--primary-blue, #0C87F0);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(12, 135, 240, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.spin-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(12, 135, 240, 0.5);
+}
+
+.spin-btn:active {
+  transform: translateY(0);
+}
+
+.spin-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Modal/Popup */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 600;
+}
+
+.modal-reward {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff9800;
+  margin-bottom: 30px;
+}
+
+.return-btn {
+  background: #27ae60;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.return-btn:hover {
+  background: #219653;
+  transform: translateY(-1px);
+}
