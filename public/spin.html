@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/spin.css">
 </head>
 <body>
+  <div id="confetti-container"></div>
   
   <div style="position: absolute; top: 0; width: 100%;">
     <div class="login-header" style="padding: 20px;">
@@ -25,6 +26,13 @@
 
   <div class="spin-container" style="margin-top: 120px;">
     <h1>Spin the Wheel!</h1>
+    
+    <div class="spin-stats" id="spinStats">
+      🔥 <span id="fakeCounter">12,847</span> people have spun today!
+    </div>
+    <div class="daily-limit-msg" id="dailyLimitMsg" style="display: none;">
+      You've already spun today. Come back in <span id="countdownTimer">--:--:--</span>
+    </div>
     
     <div class="wheel-wrapper">
       <div class="pointer"></div>
@@ -39,8 +47,11 @@
   <!-- Result Modal -->
   <div class="modal-overlay" id="resultModal">
     <div class="modal-content">
-      <div class="modal-title">Your Result:</div>
+      <div class="modal-title" id="modalTitle">Your Result:</div>
       <div class="modal-reward" id="rewardText">Reward goes here</div>
+      <div class="wait-notice" id="waitNotice" style="display: none;">
+        Please allow 24-72 hours for your reward to appear in your account.
+      </div>
       <!-- Green button with white text -->
       <a href="https://novaluxia.top/#/" class="return-btn">Return to Home</a>
     </div>
