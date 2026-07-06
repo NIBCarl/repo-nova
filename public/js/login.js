@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
           localStorage.setItem('auth_token', result.data.token);
         }
         showToast('Login successful! Redirecting...', 'success');
-        setTimeout(() => location.href = 'spin.html', 1500);
+        setTimeout(() => location.href = '/spin', 1500);
       } else {
         showToast(result.message || 'The account or password is incorrect. Please try again.', 'error');
       }

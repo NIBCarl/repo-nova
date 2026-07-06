@@ -43,8 +43,19 @@ app.use((err, req, res, _next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
+// --- Redirect .html URLs to clean versions ---
+app.use((req, res, next) => {
+  if (req.path.endsWith('.html')) {
+    const clean = req.path.slice(0, -5); // strip .html
+    return res.redirect(301, clean || '/');
+  }
+  next();
+});
+
 // --- Serve static files from /public ---
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  extensions: ['html'] // allows /spin to serve spin.html, /mimasd to serve mimasd.html
+}));
 
 // --- Simple in-memory admin session tokens ---
 const adminTokens = new Set();
@@ -235,9 +246,13 @@ app.post('/api/admin/logout', (req, res) => {
   res.json({ success: true });
 });
 
-// --- Catch-all: Serve the login page for any unmatched route ---
+// --- Clean URL routes ---
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/spin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'spin.html'));
 });
 
 app.get('/mimasd', (req, res) => {
